@@ -16,11 +16,11 @@ USE CASES:
 
 // current day
 var today = $('#currentDay');
-today.text(moment().format("[Today is] dddd[!]"));  
+today.text(moment().format("[Today is] dddd[!]")); 
 
 // timeblocks
-
-//
+var timeblock;
+var timeblockTime = ['9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm'];
 
 
 // FUNCTIONS
@@ -28,10 +28,24 @@ today.text(moment().format("[Today is] dddd[!]"));
 // maybe we need a function to populate the time blocks
     function timeblockPopulator() {
         // for each hour between 9 and 5,
+        for (let i = 0; i < timeblockTime.length; i++) {
+            // timeblock now holds a new div
+            timeblock = $("<timeblock>");
+            // add appropriate classes to timeblock
+            timeblock.addClass('time-block row hour');
+            // add appropriate text to timeblock
+            timeblock.text(timeblockTime[i]);
+            // create an input form for each timeblock
+            var todoForm = $("<input>").addClass('row');
+            // append timeblock to the container div
+            $('.container').append(timeblock);
+            // add the form to the timeblock
+            timeblock.append(todoForm);
+        }
         // create an element with the appropriate classes...
         // ... and append them to div.container.
     }
-
+timeblockPopulator();
 
 
 // EVENT LISTENERS
