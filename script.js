@@ -22,16 +22,16 @@ today.text(moment().format("[Today is] dddd[!] [the time is] h[:]mma"));
 var storedTodos = JSON.parse(localStorage.getItem('Todo')) || {};
 
 function buildRow(hour) {
-    var NOW = moment(hour, "H")
+    var NOW = moment(hour, "H");
     var baseClass = "future";
-    var action = storedTodos[hour]
+    var action = storedTodos[hour];
 
     if (moment().isSame(NOW, "hour")) {
-        baseClass = "present"
+        baseClass = "present";
     }
     else if (moment().isAfter(NOW)) {
-        baseClass = "past"
-    }
+        baseClass = "past";
+    };
 
     // timeblock now holds a new div
     var timeblock = $("<div>");
@@ -40,22 +40,22 @@ function buildRow(hour) {
     timeblock.attr("data-hour", hour);
     // add appropriate text to timeblock
 
-    var hourEl = $("<div>")
-    hourEl.addClass('hour col-2')
+    var hourEl = $("<div>");
+    hourEl.addClass('hour col-2');
     hourEl.text(NOW.format("hA"));
 
     // create an input form for each timeblock
     var todoForm = $("<textarea>");
     todoForm.addClass('description col-8 ' + baseClass);
-    todoForm.val(action)
+    todoForm.val(action);
 
     // save button 
     var saveBtn = $("<button>").addClass('saveBtn col-2');
-    var icon = $("<i>")
-    icon.addClass("fas fa-save")
-    saveBtn.append(icon)
+    var icon = $("<i>");
+    icon.addClass("fas fa-save");
+    saveBtn.append(icon);
 
-    timeblock.append(hourEl, todoForm, saveBtn)
+    timeblock.append(hourEl, todoForm, saveBtn);
 
     // append timeblock to the container div
     $('.container').append(timeblock);
@@ -64,7 +64,7 @@ function buildRow(hour) {
 function timeblockPopulator() {
     // for each hour between 9 and 5,
     for (let i = 9; i <= 17; i++) {
-        buildRow(i)
+        buildRow(i);
     };
 };
 
